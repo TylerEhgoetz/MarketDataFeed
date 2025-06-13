@@ -1,0 +1,80 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "cppbuild",
+            "label": "C/C++: Build trading engine",
+            "command": "C:\\msys64\\ucrt64\\bin\\g++.exe",
+            "args": [
+                "-fdiagnostics-color=always",
+                "-g",
+                "-ggdb",
+                "-pedantic-errors",
+                "-Wall",
+                "-Weffc++",
+                "-Wextra",
+                "-Wconversion",
+                "-Wsign-conversion",
+                "-Werror",
+                "-std=c++23",
+                // Explicitly list each .cpp:
+                "${workspaceFolder}/src/Order.cpp",
+                "${workspaceFolder}/src/MatchingEngine.cpp",
+                "${workspaceFolder}/src/main.cpp",
+                "-I${workspaceFolder}/include",
+                "-o",
+                // Put the output in, say, a build/ folder:
+                "${workspaceFolder}/build/simulator.exe"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build"
+            },
+            "detail": "Build trading engine executable"
+        },
+        // .vscode/tasks.json (only the Python‐extension task)
+        {
+            "type": "cppbuild",
+            "label": "Build Python Extension",
+            "command": "C:/msys64/ucrt64/bin/g++.exe",
+            "args": [
+                "-std=c++23",
+                "-O3",
+                "-shared",
+                "-fPIC",
+                "-static-libstdc++",
+                "-static-libgcc",
+                // pybind11 headers:
+                "-IC:/Python312/include",
+                "-IC:/Users/tyler/AppData/Roaming/Python/Python312/site-packages/pybind11/include",
+                // your engine headers:
+                "-I${workspaceFolder}/include",
+                // sources:
+                "${workspaceFolder}/src/Order.cpp",
+                "${workspaceFolder}/src/MatchingEngine.cpp",
+                "${workspaceFolder}/pybind/engine_pybind.cpp",
+                // output module
+                "-o",
+                "${workspaceFolder}/build/engine.pyd",
+                // Python libs
+                "-LC:/Python312/libs",
+                "-lpython312"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build"
+            },
+            "detail": "Build Python extension module for trading engine"
+        }
+    ]
+}

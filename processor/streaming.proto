@@ -1,0 +1,15 @@
+syntax = "proto3";
+package streaming;
+
+import "google/protobuf/empty.proto";
+
+message Trade {
+string buy_order_id  = 1;
+string sell_order_id = 2;
+double price         = 3;
+int32  quantity      = 4;
+}
+
+service TradeService {
+    rpc StreamTrades(google.protobuf.Empty) returns (stream Trade);
+}

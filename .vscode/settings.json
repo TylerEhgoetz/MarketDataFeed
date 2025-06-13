@@ -1,0 +1,7 @@
+{
+    "cmake.sourceDirectory": "C:/Users/tyler/OneDrive/Documents/projects/MarketDataFeed/trading_engine",
+    "cmake.additionalCompilerSearchDirs": [
+        "C:/msys64/ucrt64/bin/gcc.exe",
+        "C:/msys64/ucrt64/bin/g++.exe"
+    ]
+}
